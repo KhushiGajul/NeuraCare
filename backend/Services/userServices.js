@@ -92,5 +92,16 @@ const getUserByID = async (userId) => {
     return userWithoutPassword;
 };
 
+const updatePassword = async (email, newPassword) => {
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    const [result] = await db.promise().query(
+        'UPDATE users SET password = ? WHERE email = ?',
+        [hashedPassword, email]
+    );
+    if (result.affectedRows === 0) {
+        throw new Error('User not found');
+    }
+    return true;
+};
 
-export default { signup, login, updateProfile, getUserByID };
+export default { signup, login, updateProfile, getUserByID, updatePassword };

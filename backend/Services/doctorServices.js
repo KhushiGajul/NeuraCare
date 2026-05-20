@@ -36,4 +36,16 @@ const loginDoctor = async (email, password) => {
     return doctorWithoutPassword;
 };
 
-export default { allDoctors, getDoctorByID, loginDoctor };
+const updatePassword = async (email, newPassword) => {
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    const [result] = await db.promise().query(
+        'UPDATE doctors SET password = ? WHERE email = ?',
+        [hashedPassword, email]
+    );
+    if (result.affectedRows === 0) {
+        throw new Error('Doctor not found');
+    }
+    return true;
+};
+
+export default { allDoctors, getDoctorByID, loginDoctor, updatePassword };

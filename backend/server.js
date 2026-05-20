@@ -11,10 +11,12 @@ app.use(json());
 import userRoutes from "./Routes/userRoutes.js";
 import doctorRoutes from "./Routes/doctorRoutes.js";
 import contactRoutes from "./Routes/contactRoutes.js";
+import emailRoutes from "./Routes/emailRoutes.js";
 
 app.use('/api/users', userRoutes);
 app.use('/api/doctors', doctorRoutes);
 app.use('/api/contacts', contactRoutes);
+app.use('/api/email', emailRoutes);
 
 // Proxy endpoint for searching news to bypass CORS policy restrictions in front-end
 app.get("/api/news", async (req, res) => {
