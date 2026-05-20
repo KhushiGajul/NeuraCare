@@ -9,6 +9,7 @@ import Chat from "./pages/ChatAI"
 import Feed from "./pages/Feed"
 import DoctorDashboard from "./components/DoctorDashboard"
 import DoctorLogin from "./components/DoctorLogin"
+import DoctorSignup from "./components/DoctorSignup"
 import Query from "./components/Query"
 import Contact from "./components/Contact"
 
@@ -22,6 +23,7 @@ function App() {
           <Route index  element={<LandingPage />} />
           <Route path="login" element={<Login />} />
           <Route path="doctor-login" element={<DoctorLogin />} />
+          <Route path="doctor-signup" element={<DoctorSignup />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="doctor-dashboard" element={<DoctorDashboard />} />
           <Route path="signup" element={<Signup />} />

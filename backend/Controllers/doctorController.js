@@ -37,4 +37,13 @@ const loginDoctor = async (req, res) => {
     }
 };
 
-export default { allDoctors, getDoctorByID, loginDoctor };
+const signupDoctor = async (req, res) => {
+    try {
+        const doctorId = await doctorServices.signupDoctor(req.body);
+        res.status(201).json({ message: 'Doctor created successfully', doctorId });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
+
+export default { allDoctors, getDoctorByID, loginDoctor, signupDoctor };

@@ -48,4 +48,21 @@ const updatePassword = async (email, newPassword) => {
     return true;
 };
 
-export default { allDoctors, getDoctorByID, loginDoctor, updatePassword };
+const signupDoctor = async (doctorData) => {
+    const { name, email, password } = doctorData;
+    
+    // Check if doctor exists
+    const [existing] = await db.promise().query('SELECT * FROM doctors WHERE email = ?', [email]);
+    if (existing.length > 0) {
+        throw new Error('Email already registered');
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const [result] = await db.promise().query(
+        'INSERT INTO doctors (name, email, password) VALUES (?, ?, ?)',
+        [name, email, hashedPassword]
+    );
+    return result.insertId;
+}
+
+export default { allDoctors, getDoctorByID, loginDoctor, updatePassword, signupDoctor };

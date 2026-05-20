@@ -6,5 +6,6 @@ const router = Router();
 router.get('/', doctorController.allDoctors);
 router.get('/:id', doctorController.getDoctorByID);
 router.post('/login', doctorController.loginDoctor);
+router.post('/signup', doctorController.signupDoctor);
 
 export default router;

@@ -219,6 +219,9 @@ const DoctorLogin = () => {
         
         <div className="mt-8 pt-6 border-t border-slate-100 text-center space-y-3">
           <p className="text-xs text-gray-500">
+            Don't have a clinical account? <Link to="/doctor-signup" className="text-blue-600 hover:text-blue-700 font-semibold">Sign Up</Link>
+          </p>
+          <p className="text-xs text-gray-500">
             Are you a patient? <Link to="/login" className="text-blue-600 hover:text-blue-700 font-semibold">Patient Login</Link>
           </p>
           <p className="text-xs text-gray-400">
